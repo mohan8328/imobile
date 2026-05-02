@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { MOCK_SAVINGS_ACCOUNT } from '../data/mockData';
+import { useBanking } from '../context/BankingContext';
 import { colors } from '../theme/colors';
 
 function formatInr(amount: number) {
@@ -11,13 +11,16 @@ function formatInr(amount: number) {
 }
 
 export function SavingsAccountCard() {
-  const a = MOCK_SAVINGS_ACCOUNT;
+  const { snapshot } = useBanking();
+  const a = snapshot.savingsAccount;
+
   return (
     <View style={styles.card}>
       <View style={styles.accent} />
       <Text style={styles.label}>Savings · Primary</Text>
       <Text style={styles.title}>{a.accountType}</Text>
       <Text style={styles.acctNo}>{a.accountNumber}</Text>
+      {a.branch ? <Text style={styles.branch}>{a.branch}</Text> : null}
       <View style={styles.row}>
         <Text style={styles.balanceLabel}>Available balance</Text>
         <Text style={styles.balance}>{formatInr(a.availableBalance)}</Text>
@@ -68,7 +71,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#444',
     fontVariant: ['tabular-nums'],
-    marginBottom: 16,
+    marginBottom: 6,
+  },
+  branch: {
+    fontSize: 13,
+    color: colors.muted,
+    marginBottom: 12,
   },
   row: {
     borderTopWidth: StyleSheet.hairlineWidth,

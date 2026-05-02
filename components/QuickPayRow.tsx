@@ -1,15 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useRootNavigation } from '../navigation/useRootNavigation';
 import { colors } from '../theme/colors';
 
 const ACTIONS = [
-  { key: 'scan', label: 'Scan & Pay', icon: 'qr-code-outline' as const, hint: 'UPI / QR payments' },
-  { key: 'send', label: 'Send\nmoney', icon: 'paper-plane-outline' as const, hint: 'Transfer to bank / UPI' },
-  { key: 'bills', label: 'Pay\nbills', icon: 'document-text-outline' as const, hint: 'Electricity, CC, more' },
-  { key: 'recharge', label: 'Recharge', icon: 'phone-portrait-outline' as const, hint: 'Mobile & DTH' },
+  { key: 'scan' as const, label: 'Scan & Pay', icon: 'qr-code-outline' as const, screen: 'ScanPay' as const },
+  { key: 'send' as const, label: 'Send\nmoney', icon: 'paper-plane-outline' as const, screen: 'SendMoney' as const },
+  { key: 'bills' as const, label: 'Pay\nbills', icon: 'document-text-outline' as const, screen: 'Bills' as const },
+  { key: 'recharge' as const, label: 'Recharge', icon: 'phone-portrait-outline' as const, screen: 'Recharge' as const },
 ];
 
 export function QuickPayRow() {
+  const navigation = useRootNavigation();
+
   return (
     <View style={styles.wrap}>
       <Text style={styles.sectionTitle}>Quick payments</Text>
@@ -18,7 +21,7 @@ export function QuickPayRow() {
           <Pressable
             key={a.key}
             style={({ pressed }) => [styles.tile, pressed && styles.pressed]}
-            onPress={() => Alert.alert(a.label.replace('\n', ' '), `${a.hint}\n\n(Demo — not linked to real banking.)`)}
+            onPress={() => navigation.navigate(a.screen)}
           >
             <View style={styles.iconCircle}>
               <Ionicons name={a.icon} size={24} color={colors.orange} />

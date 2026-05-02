@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { MOCK_USER } from '../data/mockData';
+import { useBanking } from '../context/BankingContext';
 import { colors } from '../theme/colors';
 
 type Props = {
@@ -11,12 +11,17 @@ type Props = {
 
 export function HomeHeader({ onBell, onProfile }: Props) {
   const insets = useSafeAreaInsets();
+  const { snapshot, source } = useBanking();
+
   return (
     <View style={[styles.wrap, { paddingTop: insets.top + 8 }]}>
       <View style={styles.row}>
         <View style={styles.greeting}>
-          <Text style={styles.hi}>Hi {MOCK_USER.firstName}</Text>
+          <Text style={styles.hi}>Hi {snapshot.user.firstName}</Text>
           <Text style={styles.welcome}>Welcome to iMobile Pay</Text>
+          {source === 'remote' ? (
+            <Text style={styles.sync}>Profile synced from internet</Text>
+          ) : null}
         </View>
         <View style={styles.icons}>
           <Pressable style={styles.iconHit} onPress={onBell} hitSlop={8}>
@@ -60,6 +65,11 @@ const styles = StyleSheet.create({
     marginTop: 4,
     fontSize: 14,
     color: 'rgba(255,255,255,0.92)',
+  },
+  sync: {
+    marginTop: 6,
+    fontSize: 11,
+    color: 'rgba(255,255,255,0.85)',
   },
   icons: {
     flexDirection: 'row',

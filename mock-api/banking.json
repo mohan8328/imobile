@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "updatedAt": "2026-05-02",
+  "user": {
+    "firstName": "Mohan",
+    "customerId": "Cust •••7821"
+  },
+  "savingsAccount": {
+    "accountType": "Savings Account",
+    "accountNumber": "5010XXXXXX7890",
+    "availableBalance": 125430.5,
+    "currency": "INR",
+    "branch": "Hyderabad Main"
+  },
+  "creditCard": {
+    "cardName": "ICICI Bank Coral Credit Card",
+    "maskedNumber": "4532 •••• •••• 4521",
+    "creditLimit": 50000,
+    "outstanding": 0,
+    "currency": "INR",
+    "network": "Visa",
+    "billingCycleEnds": "12 May 2026",
+    "minimumDue": 0,
+    "rewardPoints": 2840
+  },
+  "manageCardActions": [
+    {
+      "id": "limit",
+      "title": "Credit limit",
+      "subtitle": "Request increase or temporary limit"
+    },
+    {
+      "id": "block",
+      "title": "Block / replace card",
+      "subtitle": "Lost card or suspicious activity"
+    },
+    {
+      "id": "autopay",
+      "title": "Auto debit / standing instructions",
+      "subtitle": "Pay total due or minimum"
+    },
+    {
+      "id": "stmt",
+      "title": "Statements & disputes",
+      "subtitle": "Download PDF, raise dispute"
+    }
+  ],
+  "billers": [
+    {
+      "id": "b1",
+      "name": "TSPDCL Electricity",
+      "category": "Electricity",
+      "consumerNo": "•••891",
+      "amountDue": 2140
+    },
+    {
+      "id": "b2",
+      "name": "City Gas Pipeline",
+      "category": "Gas",
+      "consumerNo": "•••402",
+      "amountDue": 890
+    },
+    {
+      "id": "b3",
+      "name": "Broadband Fiber",
+      "category": "Internet",
+      "consumerNo": "•••119",
+      "amountDue": 999
+    }
+  ],
+  "rechargeOperators": [
+    { "id": "r1", "name": "Jio", "type": "Mobile" },
+    { "id": "r2", "name": "Airtel", "type": "Mobile" },
+    { "id": "r3", "name": "Vi", "type": "Mobile" },
+    { "id": "r4", "name": "Tata Play", "type": "DTH" },
+    { "id": "r5", "name": "Dish TV", "type": "DTH" }
+  ],
+  "scanPayHelp": {
+    "title": "Scan any UPI QR",
+    "bullets": [
+      "Allow camera access when prompted.",
+      "Align the merchant QR inside the frame.",
+      "Confirm amount on the next screen before paying."
+    ],
+    "npciUrl": "https://www.npci.org.in/what-we-do/upi/product-overview"
+  },
+  "menuItems": [
+    {
+      "id": "m1",
+      "title": "Help & FAQs",
+      "subtitle": "Official mobile banking overview",
+      "link": "https://www.icicibank.com/personal-banking/insta-banking-services/mobile-banking/imobile"
+    },
+    {
+      "id": "m2",
+      "title": "Daily tip",
+      "subtitle": "Random fact from the internet",
+      "action": "chuck"
+    },
+    {
+      "id": "m3",
+      "title": "App info",
+      "subtitle": "Demo UI — not affiliated with ICICI Bank",
+      "action": "about"
+    }
+  ]
+}

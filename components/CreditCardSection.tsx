@@ -1,5 +1,6 @@
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
-import { MOCK_CREDIT_CARD } from '../data/mockData';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useBanking } from '../context/BankingContext';
+import { useRootNavigation } from '../navigation/useRootNavigation';
 import { colors } from '../theme/colors';
 
 function formatInr(amount: number) {
@@ -11,18 +12,9 @@ function formatInr(amount: number) {
 }
 
 export function CreditCardSection() {
-  const c = MOCK_CREDIT_CARD;
-
-  const onManage = () => {
-    Alert.alert('Manage', 'Manage credit card (demo — connect flows later).');
-  };
-
-  const onViewDetails = () => {
-    Alert.alert(
-      'Credit card details',
-      `${c.cardName}\n${c.maskedNumber}\nLimit: ${formatInr(c.creditLimit)}\nOutstanding: ${formatInr(c.outstanding)}`,
-    );
-  };
+  const { snapshot } = useBanking();
+  const navigation = useRootNavigation();
+  const c = snapshot.creditCard;
 
   return (
     <View style={styles.card}>
@@ -45,13 +37,13 @@ export function CreditCardSection() {
       <View style={styles.actions}>
         <Pressable
           style={({ pressed }) => [styles.actionBtn, styles.actionSecondary, pressed && styles.pressed]}
-          onPress={onManage}
+          onPress={() => navigation.navigate('CardManage')}
         >
           <Text style={styles.actionSecondaryText}>Manage</Text>
         </Pressable>
         <Pressable
           style={({ pressed }) => [styles.actionBtn, styles.actionPrimary, pressed && styles.pressed]}
-          onPress={onViewDetails}
+          onPress={() => navigation.navigate('CardDetails')}
         >
           <Text style={styles.actionPrimaryText}>View credit card details</Text>
         </Pressable>
