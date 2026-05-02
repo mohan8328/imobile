@@ -7,7 +7,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:web": "expo export -p web"
+    "build:web": "expo export -p web",
+    "eas:android:apk": "eas build -p android --profile preview",
+    "eas:android:store": "eas build -p android --profile production",
+    "eas:ios": "eas build -p ios --profile production"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.1.1",
