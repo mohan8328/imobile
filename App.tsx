@@ -1,96 +1,95 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { useState } from 'react';
+import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { BottomNav, TabKey } from './components/BottomNav';
 import { CreditCardSection } from './components/CreditCardSection';
+import { HomeHeader } from './components/HomeHeader';
+import { QuickPayRow } from './components/QuickPayRow';
 import { SavingsAccountCard } from './components/SavingsAccountCard';
+import { SearchPill } from './components/SearchPill';
+import { TabPlaceholder } from './components/TabPlaceholder';
+import { colors } from './theme/colors';
+
+const TAB_TITLE: Record<Exclude<TabKey, 'home'>, string> = {
+  pay: 'Pay & transfer',
+  services: 'Services',
+  cards: 'Cards hub',
+  menu: 'Menu',
+};
 
 export default function App() {
+  const [tab, setTab] = useState<TabKey>('home');
+
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.safe} edges={['top', 'left', 'right', 'bottom']}>
-        <StatusBar style="dark" />
-        <View style={styles.header}>
-          <View style={styles.logoMark}>
-            <Text style={styles.logoText}>i</Text>
-          </View>
-          <View>
-            <Text style={styles.appName}>iMobile Pay</Text>
-            <Text style={styles.bankName}>ICICI Bank</Text>
-          </View>
+      <View style={styles.root}>
+        <StatusBar style={tab === 'home' ? 'light' : 'dark'} />
+
+        <View style={styles.body}>
+          {tab === 'home' ? (
+            <>
+              <HomeHeader
+                onBell={() => Alert.alert('Notifications', 'Demo — no alerts yet.')}
+                onProfile={() => Alert.alert('Profile', 'Demo — settings / profile later.')}
+              />
+              <ScrollView
+                style={styles.scroll}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
+                bounces
+              >
+                <SearchPill onPress={() => Alert.alert('Search', 'Demo — search services & payees.')} />
+                <QuickPayRow />
+
+                <Text style={styles.sectionHeading}>Your accounts</Text>
+                <SavingsAccountCard />
+
+                <Text style={styles.sectionHeading}>Your cards</Text>
+                <CreditCardSection />
+              </ScrollView>
+            </>
+          ) : (
+            <View style={styles.otherWrap}>
+              <TabPlaceholder title={TAB_TITLE[tab]} />
+            </View>
+          )}
         </View>
 
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps="handled"
-          bounces
-        >
-          <Text style={styles.sectionHeading}>Your accounts</Text>
-          <SavingsAccountCard />
-
-          <Text style={styles.sectionHeading}>Cards</Text>
-          <CreditCardSection />
-        </ScrollView>
-      </SafeAreaView>
+        <BottomNav active={tab} onChange={setTab} />
+      </View>
     </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: {
+  root: {
     flex: 1,
-    backgroundColor: '#F5F5F7',
+    backgroundColor: colors.pageBg,
   },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-    backgroundColor: '#fff',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#E5E5E5',
-    gap: 12,
-  },
-  logoMark: {
-    width: 44,
-    height: 44,
-    borderRadius: 12,
-    backgroundColor: '#C62828',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoText: {
-    fontSize: 22,
-    fontWeight: '800',
-    color: '#fff',
-  },
-  appName: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#111',
-  },
-  bankName: {
-    fontSize: 13,
-    color: '#666',
-    marginTop: 2,
+  body: {
+    flex: 1,
   },
   scroll: {
     flex: 1,
+    backgroundColor: colors.pageBg,
   },
   scrollContent: {
-    paddingTop: 20,
-    paddingBottom: 28,
+    paddingTop: 4,
+    paddingBottom: 16,
     flexGrow: 1,
   },
   sectionHeading: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#555',
-    marginLeft: 24,
+    fontSize: 16,
+    fontWeight: '700',
+    color: colors.ink,
+    marginLeft: 20,
     marginBottom: 10,
-    marginTop: 4,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
+    marginTop: 16,
+  },
+  otherWrap: {
+    flex: 1,
+    backgroundColor: colors.pageBg,
   },
 });

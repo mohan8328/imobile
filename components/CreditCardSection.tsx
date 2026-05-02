@@ -1,5 +1,6 @@
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import { MOCK_CREDIT_CARD } from '../data/mockData';
+import { colors } from '../theme/colors';
 
 function formatInr(amount: number) {
   return new Intl.NumberFormat('en-IN', {
@@ -61,7 +62,7 @@ export function CreditCardSection() {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#7B0F1B',
+    backgroundColor: colors.maroon,
     borderRadius: 16,
     padding: 20,
     marginHorizontal: 20,
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
   actionPrimaryText: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#7B0F1B',
+    color: colors.maroon,
     textAlign: 'center',
   },
   pressed: {

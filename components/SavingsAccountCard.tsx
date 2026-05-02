@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { MOCK_SAVINGS_ACCOUNT } from '../data/mockData';
+import { colors } from '../theme/colors';
 
 function formatInr(amount: number) {
   return new Intl.NumberFormat('en-IN', {
@@ -13,7 +14,8 @@ export function SavingsAccountCard() {
   const a = MOCK_SAVINGS_ACCOUNT;
   return (
     <View style={styles.card}>
-      <Text style={styles.label}>Account</Text>
+      <View style={styles.accent} />
+      <Text style={styles.label}>Savings · Primary</Text>
       <Text style={styles.title}>{a.accountType}</Text>
       <Text style={styles.acctNo}>{a.accountNumber}</Text>
       <View style={styles.row}>
@@ -26,22 +28,32 @@ export function SavingsAccountCard() {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     borderRadius: 16,
     padding: 20,
     marginHorizontal: 20,
     marginBottom: 16,
     borderWidth: 1,
-    borderColor: '#E8E8E8',
+    borderColor: colors.line,
+    overflow: 'hidden',
+    position: 'relative',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.06,
     shadowRadius: 8,
     elevation: 3,
   },
+  accent: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: 4,
+    backgroundColor: colors.orange,
+  },
   label: {
     fontSize: 12,
-    color: '#888',
+    color: colors.muted,
     textTransform: 'uppercase',
     letterSpacing: 0.6,
     marginBottom: 4,
@@ -49,7 +61,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#1a1a1a',
+    color: colors.ink,
     marginBottom: 6,
   },
   acctNo: {
@@ -71,7 +83,7 @@ const styles = StyleSheet.create({
   balance: {
     fontSize: 22,
     fontWeight: '700',
-    color: '#B71C1C',
+    color: colors.orangeDark,
     fontVariant: ['tabular-nums'],
   },
 });

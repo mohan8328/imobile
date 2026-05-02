@@ -1,4 +1,8 @@
 /** Static demo data — replace with API responses later */
+export const MOCK_USER = {
+  firstName: 'Mohan',
+};
+
 export const MOCK_SAVINGS_ACCOUNT = {
   accountType: 'Savings Account',
   accountNumber: '5010XXXXXX7890',
