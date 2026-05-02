@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "imobile",
+    "name": "iMobile Pay",
     "slug": "imobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -13,9 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.icici.imobilepay.demo"
     },
     "android": {
+      "package": "com.icici.imobilepay.demo",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
