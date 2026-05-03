@@ -1,8 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useBanking } from '../context/BankingContext';
 import { colors } from '../theme/colors';
+
+const LOGO = require('../assets/imobile-logo.png');
 
 type Props = {
   onBell?: () => void;
@@ -33,9 +35,7 @@ export function HomeHeader({ onBell, onProfile }: Props) {
         </View>
       </View>
       <View style={styles.brandRow}>
-        <View style={styles.logoChip}>
-          <Text style={styles.logoI}>i</Text>
-        </View>
+        <Image source={LOGO} style={styles.logo} resizeMode="contain" accessibilityLabel="iMobile logo" />
         <Text style={styles.brand}>ICICI Bank</Text>
       </View>
     </View>
@@ -83,20 +83,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 14,
-    gap: 10,
+    gap: 12,
   },
-  logoChip: {
-    width: 32,
-    height: 32,
-    borderRadius: 8,
+  logo: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
     backgroundColor: colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logoI: {
-    fontSize: 18,
-    fontWeight: '800',
-    color: colors.orange,
   },
   brand: {
     fontSize: 15,
