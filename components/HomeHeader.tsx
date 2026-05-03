@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useBanking } from '../context/BankingContext';
 import { colors } from '../theme/colors';
 
-const LOGO = require('../assets/imobile-logo.png');
+const LOGO = require('../assets/icon.png');
 
 type Props = {
   onBell?: () => void;
