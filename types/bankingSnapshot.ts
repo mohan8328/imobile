@@ -3,7 +3,11 @@ export type BankingSnapshot = {
   updatedAt: string;
   user: {
     firstName: string;
+    fullName?: string;
+    place?: string;
     customerId: string;
+    email?: string;
+    mobile?: string;
   };
   savingsAccount: {
     accountType: string;

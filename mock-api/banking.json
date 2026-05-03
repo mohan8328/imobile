@@ -3,7 +3,11 @@
   "updatedAt": "2026-05-02",
   "user": {
     "firstName": "Mohan",
-    "customerId": "Cust •••7821"
+    "fullName": "Mohan Sai Reddy Yerram Palli",
+    "place": "Hyderabad, Telangana, India",
+    "customerId": "Cust •••7821",
+    "email": "",
+    "mobile": ""
   },
   "savingsAccount": {
     "accountType": "Savings Account",
