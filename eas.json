@@ -9,9 +9,16 @@
     },
     "preview": {
       "distribution": "internal",
-      "android": { "buildType": "apk" }
+      "android": {
+        "buildType": "apk",
+        "image": "sdk-54"
+      }
     },
-    "production": {}
+    "production": {
+      "android": {
+        "image": "sdk-54"
+      }
+    }
   },
   "submit": {
     "production": {}
